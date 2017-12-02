@@ -1,0 +1,17 @@
+{
+    use esmith::ConfigDB;
+    use esmith::util;
+    my $confdb = esmith::ConfigDB->open;
+    my $rspamd = $confdb->get('rpsamd') or die "No rpsamd db entry found\n";
+    my $alias = $rspamd->prop('alias') || "";
+
+    # initialize alias if needed
+    if ($alias eq "") {
+        $alias = esmith::util::genRandomHash();
+        $confdb->set_prop('rpsamd','alias',$alias);
+    }
+
+    $OUT .= "ProxyPass /$alias http://localhost/$alias:11334\n";
+    $OUT .= "ProxyPassReverse /$alias http://localhost/$alias:11334\n";
+}
+
