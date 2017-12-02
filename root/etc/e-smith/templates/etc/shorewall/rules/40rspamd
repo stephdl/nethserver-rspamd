@@ -1,0 +1,23 @@
+
+#
+# 40 rspamd WebUI access
+#
+
+{
+my $rspamdAccess = $rspamd{'rspamdWebUI'} || 'green';
+my $status = $rspamd{'status'} || 'disabled';
+
+return "#rpsamd WebUI is disabled by rspamd e-smith properties\n"
+    unless ($status eq 'enabled');
+
+if ($rspamdAccess eq 'green') {
+    $OUT .= "# Enable worker-controller from green interfaces\n";
+    $OUT .= "?COMMENT Enable worker-controller from green interfaces\n";
+    $OUT .= "ACCEPT\tloc\t\$FW\ttcp\t11334\n";
+}
+elsif ($rspamdAccess eq 'red') {
+    $OUT .= "# Enable worker-controller from red interfaces\n";
+    $OUT .= "?COMMENT Enable worker-controller from red interfaces\n";
+    $OUT .= "ACCEPT\tnet\t\$FW\ttcp\t11334\n";
+}
+}

@@ -16,31 +16,34 @@ event_templates($event, qw(
     /etc/rspamd/local.d/worker-proxy.inc
     /etc/rspamd/local.d/worker-controller.inc
     /etc/rspamd/local.d/worker-normal.inc
+    /etc/rspamd/rspamd.conf.local
     /etc/postfix/main.cf
 ));
 
 event_services($event, qw(
     rspamd restart
     postfix reload
+    httpd-admin reload
+    httpd reload
 ));
 
 my $event = 'nethserver-rspamd-save';
 
-#event_actions($event, qw(
-#             nethserver-virtualhosts-create 20
-#             nethserver-virtualhosts-setbasicpassword 30
-#             nethserver-virtualhosts-ftp-save 60
-#));
+event_actions($event, qw(
+    firewall-adjust 91
+));
 
 event_templates($event, qw(
     /etc/httpd/admin-conf.d/rspamd.conf
     /etc/rspamd/local.d/worker-proxy.inc
     /etc/rspamd/local.d/worker-controller.inc
     /etc/rspamd/local.d/worker-normal.inc
+    /etc/rspamd/rspamd.conf.local
     /etc/postfix/main.cf
 ));
 
 event_services($event, qw(
     rspamd reload
     postfix reload
+    httpd reload
 ));

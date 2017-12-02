@@ -2,6 +2,10 @@
 use NethServer::Password;
 my $password = NethServer::Password::store('rspamd');
 $OUT .= qq (
+
+#the port is controlled by the ns firewall
+bind_socket = "*:11334";
+
 #password for the web UI
 password = "$password";
 enable_password = "$password";

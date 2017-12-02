@@ -1,3 +1,4 @@
+<?php
 namespace NethServer\Module\Mail;
 
 /*
@@ -31,6 +32,6 @@ class Rspamd extends \Nethgui\Controller\AbstractController
         $domain = $this->getPlatform()->getDatabase('configuration')->getType('DomainName');
         $rspamd = $this->getPlatform()->getDatabase('configuration')->getKey('rspamd');
         $host = explode(':',$_SERVER['HTTP_HOST']);
-        $view['url'] = "/".$rspamd['alias']."/host.php?h=$hostname.$domain";
+        $view['url'] = "/".$rspamd['alias'];
     }
 }

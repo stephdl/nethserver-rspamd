@@ -8,6 +8,8 @@ Release: %{release}%{?dist}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
+#Source1: http://rspamd.com/rspamd_statistics/bayes.spam.sqlite
+#Source2: http://rspamd.com/rspamd_statistics/bayes.ham.sqlite
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 Requires: rspamd
 BuildRequires: nethserver-devtools
@@ -20,10 +22,11 @@ custom services such as URL black lists. Each message is analysed by Rspamd
 and given a spam score.
 
 %changelog
-* Sat Dec 01 2017 stephane de Labrusse <stephdl@de-labrusse.fr>
+* Sat Dec 02 2017 stephane de Labrusse <stephdl@de-labrusse.fr>
 - initial
 
 %prep
+
 %setup
 
 %build
@@ -32,12 +35,19 @@ perl createlinks
 
 %install
 rm -rf $RPM_BUILD_ROOT
+#mkdir -p root/var/lib/rspamd
+#mv %{SOURCE1}  root/var/lib/rspamd/
+#mv %{SOURCE2}  root/var/lib/rspamd/
+
 (cd root   ; find . -depth -print | cpio -dump $RPM_BUILD_ROOT)
 rm -f %{name}-%{version}-%{release}-filelist
 %{genfilelist} $RPM_BUILD_ROOT \
 > %{name}-%{version}-%{release}-filelist
 
 %post
+/usr/bin/systemctl enable rspamd
+/usr/bin/systemctl start rspamd
+
 %postun
 
 %clean 
