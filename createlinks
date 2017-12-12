@@ -22,6 +22,7 @@ event_templates($event, qw(
     /etc/rspamd/local.d/worker-controller.inc
     /etc/rspamd/local.d/worker-normal.inc
     /etc/rspamd/rspamd.conf.local
+    /var/lib/nethserver/sieve-scripts/before.sieve
 ));
 
 event_services($event, qw(
@@ -54,6 +55,7 @@ event_templates($event, qw(
     /etc/rspamd/local.d/worker-controller.inc
     /etc/rspamd/local.d/worker-normal.inc
     /etc/rspamd/rspamd.conf.local
+    /var/lib/nethserver/sieve-scripts/before.sieve
 ));
 
 event_services($event, qw(
