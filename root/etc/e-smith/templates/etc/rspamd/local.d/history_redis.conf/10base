@@ -8,4 +8,4 @@ key_prefix = "rs_history";
 nrows = 2000;
 
 # Use zstd compression when storing data in redis
-compress = true
+compress = true;
