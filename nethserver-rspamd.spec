@@ -12,6 +12,9 @@ Source: %{name}-%{version}.tar.gz
 #Source2: http://rspamd.com/rspamd_statistics/bayes.ham.sqlite
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 Requires: rspamd
+Requires: nethserver-antivirus
+Requires: nethserver-mail-server
+Requires: nethserver-redis
 BuildRequires: nethserver-devtools
 BuildArch: noarch
 

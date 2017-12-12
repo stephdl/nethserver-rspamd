@@ -1,0 +1,11 @@
+# Redis server to store history
+servers = 127.0.0.1:6379;
+
+# Default key name
+key_prefix = "rs_history";
+
+# Default rows limit
+nrows = 2000;
+
+# Use zstd compression when storing data in redis
+compress = true
