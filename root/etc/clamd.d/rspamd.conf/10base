@@ -1,0 +1,30 @@
+
+# Use system logger (can work together with LogFile).
+# Default: no
+LogSyslog yes
+
+# Path to the database directory.
+# Default: hardcoded (depends on installation options)
+DatabaseDirectory /var/lib/clamav
+
+# TCP port address.
+# Default: no
+TCPSocket 3310
+
+# TCP address.
+# By default we bind to INADDR_ANY, probably not wise.
+# Enable the following to provide some degree of protection
+# from the outside world. This option can be specified multiple
+# times if you want to listen on multiple IPs. IPv6 is now supported.
+# Default: no
+TCPAddr 127.0.0.1
+
+# Run as another user (clamd must be started by root for this option to work)
+# Default: don't drop privileges
+#User clamscan
+User clamupdate
+
+# With this option enabled ClamAV will try to detect phishing attempts by using
+# signatures.
+# Default: yes
+#PhishingSignatures yes
