@@ -7,7 +7,7 @@ LogFacility LOG_MAIL
 
 # This option allows you to save a process identifier of the listening
 # daemon (main thread).
-PidFile /var/run/clamd/rspamd.pid
+PidFile /var/run/clamd.rspamd/rspamd.pid
 
 # Remove stale socket after unclean shutdown.
 # Default: disabled
@@ -17,7 +17,7 @@ FixStaleSocket yes
 User clamupdate
 
 # Path to a local socket file the daemon will listen on.
-LocalSocket /var/run/clamd/rspamd.sock
+LocalSocket /var/run/clamd.rspamd/rspamd.sock
 
 
 # With this option enabled ClamAV will try to detect phishing attempts by using

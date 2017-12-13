@@ -38,6 +38,7 @@ perl createlinks
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mkdir -p root/var/run/clamd.rspamd
 #mkdir -p root/var/lib/rspamd
 #mv %{SOURCE1}  root/var/lib/rspamd/
 #mv %{SOURCE2}  root/var/lib/rspamd/
@@ -45,6 +46,7 @@ rm -rf $RPM_BUILD_ROOT
 (cd root   ; find . -depth -print | cpio -dump $RPM_BUILD_ROOT)
 rm -f %{name}-%{version}-%{release}-filelist
 %{genfilelist} $RPM_BUILD_ROOT \
+  --dir /var/run/clamd.rspamd 'attr(0750,clamupdate,clamupdate)' \
 > %{name}-%{version}-%{release}-filelist
 
 %post
