@@ -20,3 +20,9 @@ symbol "IP_SCORE" \{
   weight = 2.0;
   description = "IP reputation";
 \}
+
+symbol "CLAM_VIRUS" \{
+  weight = 4.0;
+  description = "Virus detected by clamav";
+  one_shot = "true";
+\}
