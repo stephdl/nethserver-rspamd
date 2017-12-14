@@ -52,7 +52,8 @@ rm -f %{name}-%{version}-%{release}-filelist
 %post
 /usr/bin/systemctl enable rspamd
 /usr/bin/systemctl start rspamd
-
+/usr/bin/systemctl enable clamd@rspamd.service
+/usr/bin/systemctl start clamd@rspamd.service
 %postun
 
 %clean
