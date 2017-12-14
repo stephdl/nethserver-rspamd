@@ -14,16 +14,11 @@ PidFile /var/run/clamd.rspamd/rspamd.pid
 FixStaleSocket yes
 
 # Run as a selected user (clamd must be started by root).
-User clamupdate
+User _rspamd
 
 # Path to a local socket file the daemon will listen on.
 LocalSocket /var/run/clamd.rspamd/rspamd.sock
 
-
-# With this option enabled ClamAV will try to detect phishing attempts by using
-# signatures.
-# Default: yes
-PhishingSignatures yes
 
 # With this option enabled ClamAV will try to detect phishing attempts by using
 # signatures.

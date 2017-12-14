@@ -19,9 +19,9 @@ BuildRequires: nethserver-devtools
 BuildArch: noarch
 
 %description
-Rspamd is an advanced spam filtering system that allows evaluation of messages 
-by a number of rules including regular expressions, statistical analysis and 
-custom services such as URL black lists. Each message is analysed by Rspamd 
+Rspamd is an advanced spam filtering system that allows evaluation of messages
+by a number of rules including regular expressions, statistical analysis and
+custom services such as URL black lists. Each message is analysed by Rspamd
 and given a spam score.
 
 %changelog
@@ -46,7 +46,7 @@ mkdir -p root/var/run/clamd.rspamd
 (cd root   ; find . -depth -print | cpio -dump $RPM_BUILD_ROOT)
 rm -f %{name}-%{version}-%{release}-filelist
 %{genfilelist} $RPM_BUILD_ROOT \
-  --dir /var/run/clamd.rspamd 'attr(0750,clamupdate,clamupdate)' \
+  --dir /var/run/clamd.rspamd 'attr(0750,_rspamd,_rspamd)' \
 > %{name}-%{version}-%{release}-filelist
 
 %post
@@ -55,7 +55,7 @@ rm -f %{name}-%{version}-%{release}-filelist
 
 %postun
 
-%clean 
+%clean
 rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}-%{version}-%{release}-filelist
