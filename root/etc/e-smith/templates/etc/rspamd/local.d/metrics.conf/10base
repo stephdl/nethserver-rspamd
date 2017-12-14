@@ -21,8 +21,3 @@ symbol "IP_SCORE" \{
   description = "IP reputation";
 \}
 
-symbol "CLAM_VIRUS" \{
-  weight = 4.0;
-  description = "Virus detected by clamav";
-  one_shot = "true";
-\}
