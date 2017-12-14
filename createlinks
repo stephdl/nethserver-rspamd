@@ -6,6 +6,7 @@ my $event = 'nethserver-rspamd-update';
 event_actions ( $event, 'initialize-default-databases' => '00');
 
 event_templates($event, qw(
+    /etc/clamd.d/rspamd.conf
     /etc/httpd/admin-conf.d/rspamd.conf
     /etc/postfix/main.cf
     /etc/rspamd/local.d/antivirus.conf
@@ -40,6 +41,7 @@ event_actions($event, qw(
 ));
 
 event_templates($event, qw(
+    /etc/clamd.d/rspamd.conf
     /etc/httpd/admin-conf.d/rspamd.conf
     /etc/postfix/main.cf
     /etc/rspamd/local.d/antivirus.conf
