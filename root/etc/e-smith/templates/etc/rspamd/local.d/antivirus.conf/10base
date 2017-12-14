@@ -1,5 +1,5 @@
 {
-return unless ($rspamd{'antivirus'} eq 'enabled');
+return unless ($rspamd{'VirusCheckStatus'} eq 'enabled');
 
 #can be 'no action' or 'reject'
 my $action = $rspamd{'antivirusAction'} || 'reject';
