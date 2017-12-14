@@ -1,0 +1,2 @@
+# Redis server to store learning data and ANN
+servers = 127.0.0.1:6379;
