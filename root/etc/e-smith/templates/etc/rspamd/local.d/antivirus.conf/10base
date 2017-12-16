@@ -1,19 +1,22 @@
 {
-return unless ($rspamd{'VirusCheckStatus'} eq 'enabled');
-
-#can be 'no action' or 'reject'
 my $action = $rspamd{'antivirusAction'} || 'reject';
 my $scanSize = $rspamd{'antivirusScanSize'} || '20000000';
+my $virusStatus = $rspamd{'VirusCheckStatus'} || 'enabled';
+my $virusAttachment = $rspamd{'VirusScanOnlyAttachment'} || 'true';
+
+$OUT .= "\n#Enable or disable the module \nenabled = ";
+$OUT .= ($virusStatus eq 'enabled') ? 'true': 'false';
 
 
 $OUT .= qq(
+
 # multiple scanners could be checked, for each we create a configuration block with an arbitrary name
 first \{
   # If set force this action if any virus is found (default unset: no action is forced, 'add header' to tag as spam)
   action = "$action";
 
   # if `true` only messages with non-image attachments will be checked (default true)
-  attachments_only = true;
+  attachments_only = $virusAttachment;
 
   # If `max_size` is set, messages > n bytes in size are not scanned
   max_size = $scanSize;
@@ -26,12 +29,6 @@ first \{
 
   # If set true, log message is emitted for clean messages
   #log_clean = false;
-
-  # For "savapi" you must also specify the following variable
-  #product_id = 12345;
-
-  # For "savapi" you can enable logging for clean messages
-  #log_clean = true;
 
   # servers to query (if port is unspecified, scanner-specific default is used)
   # can be specified multiple times to pool servers
