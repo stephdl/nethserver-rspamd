@@ -1,0 +1,10 @@
+#!/usr/bin/perl -w
+
+opendir my $dir, "/etc/rspamd/local.d" or die "Cannot open directory: $!";
+my @files = readdir $dir;
+closedir $dir;
+
+foreach my $file (@files) {
+next if (($file eq '.') || ($file eq '..'));
+unlink  "/etc/rspamd/local.d/$file" or warn "Could not unlink $file: $!";
+}

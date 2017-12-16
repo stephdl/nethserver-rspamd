@@ -1,0 +1,19 @@
+#!/usr/bin/perl -w
+use esmith::ConfigDB;
+my $db = esmith::ConfigDB->open_ro or die "Impossible to open the Configuration database";
+my $spamEnable = $db->get_prop('rspamd','SpamCheckStatus') || 'enabled';
+
+exit 0 unless ( $spamEnable eq 'disabled');
+
+opendir my $dir, "/etc/rspamd/modules.d" or die "Cannot open directory: $!";
+my @files = readdir $dir;
+closedir $dir;
+
+foreach my $file (@files) {
+#antivirus.conf is handled by its status
+next if (($file eq '.') || ($file eq '..') || ($file eq 'antivirus.conf'));
+
+open my $fh, ">", "/etc/rspamd/local.d/$file" or die("Could not open file. $!");
+print $fh "#Disabled by The nethgui UI\nenabled = false";
+close $fh
+}
