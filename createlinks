@@ -3,7 +3,11 @@
 use esmith::Build::CreateLinks qw(:all);
 
 my $event = 'nethserver-rspamd-update';
-event_actions ( $event, 'initialize-default-databases' => '00');
+event_actions ( $event, qw (
+    initialize-default-databases 00
+    nethserver-rspamd-unlink-modules-configuration 01
+    nethserver-rspamd-disable-modules-configuration 10
+    ));
 
 event_templates($event, qw(
     /etc/clamd.d/rspamd.conf
@@ -37,6 +41,8 @@ event_services($event, qw(
 my $event = 'nethserver-rspamd-save';
 
 event_actions($event, qw(
+    nethserver-rspamd-unlink-modules-configuration 01
+    nethserver-rspamd-disable-modules-configuration 10
     firewall-adjust 91
 ));
 
