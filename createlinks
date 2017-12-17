@@ -27,6 +27,7 @@ event_templates($event, qw(
     /etc/rspamd/local.d/worker-controller.inc
     /etc/rspamd/local.d/worker-normal.inc
     /etc/rspamd/local.d/fann_redis.conf
+    /etc/rspamd/local.d/options.inc
     /etc/rspamd/rspamd.conf.local
     /var/lib/nethserver/sieve-scripts/before.sieve
 ));
@@ -64,6 +65,7 @@ event_templates($event, qw(
     /etc/rspamd/local.d/worker-controller.inc
     /etc/rspamd/local.d/worker-normal.inc
     /etc/rspamd/local.d/fann_redis.conf
+    /etc/rspamd/local.d/options.inc
     /etc/rspamd/rspamd.conf.local
     /var/lib/nethserver/sieve-scripts/before.sieve
 ));
