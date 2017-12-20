@@ -5,6 +5,7 @@ use esmith::Build::CreateLinks qw(:all);
 my $event = 'nethserver-rspamd-update';
 event_actions ( $event, qw (
     initialize-default-databases 00
+    nethserver-rspamd-daemon-reload 01
     nethserver-rspamd-unlink-modules-configuration 01
     nethserver-rspamd-disable-modules-configuration 10
     ));

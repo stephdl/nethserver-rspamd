@@ -50,7 +50,7 @@ rm -f %{name}-%{version}-%{release}-filelist
 > %{name}-%{version}-%{release}-filelist
 
 %post
-/usr/bin/systemctl daemon-reload
+#/usr/bin/systemctl daemon-reload
 /usr/bin/systemctl enable rspamd
 /usr/bin/systemctl start rspamd
 #/usr/bin/systemctl enable clamd@rspamd.service
