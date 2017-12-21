@@ -32,13 +32,13 @@ event_templates($event, qw(
     /etc/rspamd/local.d/multimap.conf
     /etc/rspamd/rspamd.conf.local
     /var/lib/nethserver/sieve-scripts/before.sieve
-    local_wl_from.map
-    local_wl_from_domains.map
-    local_bl_from.map
-    local_bl_from_domains.map
-    local_wl_to_domains.map
-    local_wl_to.map
-    local_forbidden_file_extension.map
+    /etc/rspamd/local_wl_from.map
+    /etc/rspamd/local_wl_from_domains.map
+    /etc/rspamd/local_bl_from.map
+    /etc/rspamd/local_bl_from_domains.map
+    /etc/rspamd/local_wl_to_domains.map
+    /etc/rspamd/local_wl_to.map
+    /etc/rspamd/local_forbidden_file_extension.map
 ));
 
 event_services($event, qw(
@@ -78,13 +78,13 @@ event_templates($event, qw(
     /etc/rspamd/rspamd.conf.local
     /etc/rspamd/local.d/multimap.conf
     /var/lib/nethserver/sieve-scripts/before.sieve
-    local_wl_from.map
-    local_wl_from_domains.map
-    local_bl_from.map
-    local_bl_from_domains.map
-    local_wl_to_domains.map
-    local_wl_to.map
-    local_forbidden_file_extension.map
+    /etc/rspamd/local_wl_from.map
+    /etc/rspamd/local_wl_from_domains.map
+    /etc/rspamd/local_bl_from.map
+    /etc/rspamd/local_bl_from_domains.map
+    /etc/rspamd/local_wl_to_domains.map
+    /etc/rspamd/local_wl_to.map
+    /etc/rspamd/local_forbidden_file_extension.map
 ));
 
 event_services($event, qw(
