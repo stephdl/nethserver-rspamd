@@ -1,7 +1,7 @@
 # local.d/multimap.conf
 
 # whitelist the senders
-FROM_WHITELIST {
+FROM_WHITELIST \{
     type = "from";
     map = "/var/lib/rspamd/local_wl_from.map";
     prefilter = true;
@@ -9,10 +9,10 @@ FROM_WHITELIST {
     action = "accept";
     description = "Accepted list of FROM email address";
     symbol = "FROM_WHITELIST";
-}
+\}
 
 #whitelist the domains of senders
-FROM_DOMAINS_WHITELIST {
+FROM_DOMAINS_WHITELIST \{
     map = "/var/lib/rspamd/local_wl_from_domains.map";
     type = "from";
     prefilter = true;
@@ -20,10 +20,10 @@ FROM_DOMAINS_WHITELIST {
     filter = "email:domain:tld";
     description = "Accepted list of FROM domains";
     symbol = "FROM_DOMAINS_WHITELIST";
-}
+\}
 
 #blacklist the senders
-FROM_BLACKLIST {
+FROM_BLACKLIST \{
     type = "from";
     map = "/var/lib/rspamd/local_bl_from.map";
     action = "reject";
@@ -31,20 +31,20 @@ FROM_BLACKLIST {
     filter = "email:addr";
     symbol = "FROM_BLACKLIST";
     description = "Refused list of FROM email address";
-}
+\}
 
 #blacklist the domains of senders
-FROM_DOMAINS_BLACKLIST {
+FROM_DOMAINS_BLACKLIST \{
     map = "/var/lib/rspamd/local_bl_from_domains.map";
     type = "from";
     filter = "email:domain:tld";
     description = "Refused list of FROM domains";
     symbol = "FROM_DOMAINS_BLACKLIST";
     score = 300;
-}
+\}
 
 #whitelist the domain of recipients
-TO_DOMAINS_WHITELIST {
+TO_DOMAINS_WHITELIST \{
     map = "/var/lib/rspamd/local_wl_to_domains.map";
     type = "rcpt";
     prefilter = true;
@@ -52,10 +52,10 @@ TO_DOMAINS_WHITELIST {
     filter = "email:domain:tld";
     description = "Accepted list SMTP TO domain";
     symbol = "TO_DOMAINS_WHITELIST";
-}
+\}
 
 #whitelist the email address of recipients
-TO_WHITELIST {
+TO_WHITELIST \{
     type = "rcpt";
     map = "/var/lib/rspamd/local_wl_to.map";
     prefilter = true;
@@ -63,15 +63,15 @@ TO_WHITELIST {
     action = "accept";
     description = "Accepted list of SMTP TO email address";
     symbol = "TO_WHITELIST";
-}
+\}
 
 
 #reject email when the file extension is found
-FORBIDDEN_FILE_EXTENSION {
+FORBIDDEN_FILE_EXTENSION \{
     type = "filename";
     filter = "extension";
     map = "/var/lib/rspamd/local_forbidden_file_extension.map";
     action = "reject";
     symbol = "FORBIDDEN_FILE_EXTENSION";
     description = "List of forbidden file extensions";
-}
+\}
