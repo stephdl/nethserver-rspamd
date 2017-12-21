@@ -84,6 +84,7 @@ rm -rf $RPM_BUILD_ROOT
 /var/lib/rspamd/local_bl_from.map
 /usr/share/nethesis/NethServer
 /etc/httpd/conf.d/rspamd.conf
+/var/run/clamd.rspamd
 
 #%dir %{_nseventsdir}/%{name}-update
 %doc COPYING
