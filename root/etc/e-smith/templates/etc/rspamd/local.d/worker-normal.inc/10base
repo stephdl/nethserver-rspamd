@@ -1,2 +1,6 @@
 # /etc/rspamd/local.d/worker-normal.inc
 bind_socket = "localhost:11333";
+
+# number of worker
+count = {$rspamd{MaxProcesses} || '1'}
+

@@ -1,6 +1,8 @@
 {
 use NethServer::Password;
 my $password = NethServer::Password::store('rspamd');
+my $worker = $rspamd{MaxProcesses} || '1';
+
 $OUT .= qq (
 
 #the port is controlled by the ns firewall
@@ -9,5 +11,8 @@ bind_socket = "*:11334";
 #password for the web UI
 password = "$password";
 enable_password = "$password";
+
+# number of worker
+count = $worker;
 );
 }

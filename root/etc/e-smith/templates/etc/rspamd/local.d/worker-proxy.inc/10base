@@ -10,3 +10,6 @@ upstream "local" \{
   default = yes; # Self-scan upstreams are always default
   self_scan = yes; # Enable self-scan
 \}
+
+# number of worker
+count = {$rspamd{MaxProcesses} || '1'}
