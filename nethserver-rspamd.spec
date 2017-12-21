@@ -73,8 +73,8 @@ rm -rf $RPM_BUILD_ROOT
 #needed because 'rpmbuild: error: Installed (but unpackaged) file(s) found'
 #https://www.cyberciti.biz/faq/rhel-centos-linuxrpmbuild-error-installed-but-unpackaged-files-found/
 /etc
-/usr
-/var
+#/usr
+#/var
 
 %dir %{_nseventsdir}/%{name}-update
 %doc COPYING
