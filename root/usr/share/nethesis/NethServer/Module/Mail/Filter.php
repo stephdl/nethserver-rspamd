@@ -30,8 +30,8 @@ use Nethgui\System\PlatformInterface as Validate;
  */
 class Filter extends \Nethgui\Controller\AbstractController
 {
-    public $spamTagLevel;
-    public $spamDsnLevel;
+#    public $spamTagLevel;
+#    public $spamDsnLevel;
     public $attachmentClasses;
 
     public function initialize()
@@ -43,22 +43,23 @@ class Filter extends \Nethgui\Controller\AbstractController
 
         $this->attachmentClasses = $attachmentClasses;
 
-        $this->spamTagLevel = $this->getPlatform()
-            ->getDatabase('configuration')
-            ->getProp('rspamd', 'SpamTagLevel')
-        ;
-        $this->spamDsnLevel = $this->getPlatform()
-            ->getDatabase('configuration')
-            ->getProp('rspamd', 'SpamDsnLevel')
-        ;
-
+#        $this->spamTagLevel = $this->getPlatform()
+#            ->getDatabase('configuration')
+#            ->getProp('rspamd', 'SpamTagLevel')
+#        ;
+#        $this->spamDsnLevel = $this->getPlatform()
+#            ->getDatabase('configuration')
+#            ->getProp('rspamd', 'SpamDsnLevel')
+#        ;
+#
         $this->declareParameter('VirusCheckStatus', Validate::SERVICESTATUS, array('configuration', 'rspamd', 'VirusCheckStatus'));
         $this->declareParameter('SpamCheckStatus', Validate::SERVICESTATUS, array('configuration', 'rspamd', 'SpamCheckStatus'));
         $this->declareParameter('BlockAttachmentStatus', Validate::SERVICESTATUS, array('configuration', 'rspamd', 'BlockAttachmentStatus'));
         $this->declareParameter('SpamSubjectPrefixStatus', Validate::SERVICESTATUS, array('configuration', 'rspamd', 'SpamSubjectPrefixStatus'));
         $this->declareParameter('SpamSubjectPrefixString', $this->createValidator()->maxLength(16), array('configuration', 'rspamd', 'SpamSubjectPrefixString'));
-        $this->declareParameter('SpamTag2Level', $this->createValidator()->lessThan($this->spamDsnLevel)->greatThan($this->spamTagLevel), array('configuration', 'rspamd', 'SpamTag2Level'));
-        $this->declareParameter('SpamKillLevel', $this->createValidator()->lessThan($this->spamDsnLevel)->greatThan($this->spamTagLevel), array('configuration', 'rspamd', 'SpamKillLevel'));
+        $this->declareParameter('SpamGreyLevel', $this->createValidator()->lessThan($this->spamTag2Level), array('configuration', 'rspamd', 'SpamGreyLevel'));
+        $this->declareParameter('SpamTagLevel', $this->createValidator()->lessThan($this->spamKillLevel)->greatThan($this->spamGreyLevel), array('configuration', 'rspamd', 'SpamTagLevel'));
+        $this->declareParameter('SpamKillLevel', $this->createValidator()->greatThan($this->spamTagLevel), array('configuration', 'rspamd', 'SpamKillLevel'));
         $this->declareParameter('AddressAcl', Validate::ANYTHING, array(
             array('configuration', 'rspamd', 'RecipientWhiteList'),
             array('configuration', 'rspamd', 'SenderWhiteList'),
@@ -107,7 +108,7 @@ class Filter extends \Nethgui\Controller\AbstractController
 
     public function validate(\Nethgui\Controller\ValidationReportInterface $report)
     {
-        $this->getValidator('SpamTag2Level')->lessThan($this->parameters['SpamKillLevel']);
+        $this->getValidator('SpamTagLevel')->lessThan($this->parameters['SpamKillLevel']);
 
         $message = '';
         $args = array();

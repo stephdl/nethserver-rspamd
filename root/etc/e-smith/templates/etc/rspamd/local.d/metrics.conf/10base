@@ -1,5 +1,11 @@
 #see https://rspamd.com/doc/configuration/metrics.html
 
+actions \{
+    reject = {$rspamd{SpamKillLevel} || '15'};
+    add_header = {$rspamd{SpamTag2Level} || '6'};
+    greylist = {$rspamd{SpamGreyLevel} || '4'};
+\}
+
 symbol "MX_INVALID" \{
   score = 1.0;
   description = "No connectable MX";
