@@ -72,9 +72,18 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 #needed because 'rpmbuild: error: Installed (but unpackaged) file(s) found'
 #https://www.cyberciti.biz/faq/rhel-centos-linuxrpmbuild-error-installed-but-unpackaged-files-found/
-/etc
-#/usr
-#/var
+/etc/e-smith/
+/etc/backup-data.d
+/etc/systemd/system/rspamd.service.d
+/var/lib/rspamd/local_bl_from_domains.map
+/var/lib/rspamd/local_forbidden_file_extension.map
+/var/lib/rspamd/local_wl_from.map
+/var/lib/rspamd/local_wl_to.map
+/var/lib/rspamd/local_wl_from_domains.map
+/var/lib/rspamd/local_wl_to_domains.map
+/var/lib/rspamd/local_bl_from.map
+/usr/share/nethesis/NethServer
+
 
 %dir %{_nseventsdir}/%{name}-update
 %doc COPYING
