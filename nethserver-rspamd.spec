@@ -32,13 +32,13 @@ mkdir -p root/var/run/clamd.rspamd
 (cd root; find . -depth -print | cpio -dump %{buildroot})
 %{genfilelist} %{buildroot} \
   --dir /var/run/clamd.rspamd 'attr(0750,_rspamd,_rspamd)' \
-  --file /var/lib/rspamd/local_wl_from.map 'attr(0640,_rspamd,_rspamd)' \
-  --file /var/lib/rspamd/local_wl_from_domains.map 'attr(0640,_rspamd,_rspamd)' \
-  --file /var/lib/rspamd/local_bl_from.map 'attr(0640,_rspamd,_rspamd)' \
-  --file /var/lib/rspamd/local_bl_from_domains.map 'attr(0640,_rspamd,_rspamd)' \
-  --file /var/lib/rspamd/local_wl_to_domains.map 'attr(0640,_rspamd,_rspamd)' \
-  --file /var/lib/rspamd/local_wl_to.map 'attr(0640,_rspamd,_rspamd)' \
-  --file /var/lib/rspamd/local_forbidden_file_extension.map 'attr(0640,_rspamd,_rspamd)' \
+#  --file /var/lib/rspamd/local_wl_from.map 'attr(0640,_rspamd,_rspamd)' \
+#  --file /var/lib/rspamd/local_wl_from_domains.map 'attr(0640,_rspamd,_rspamd)' \
+#  --file /var/lib/rspamd/local_bl_from.map 'attr(0640,_rspamd,_rspamd)' \
+#  --file /var/lib/rspamd/local_bl_from_domains.map 'attr(0640,_rspamd,_rspamd)' \
+#  --file /var/lib/rspamd/local_wl_to_domains.map 'attr(0640,_rspamd,_rspamd)' \
+#  --file /var/lib/rspamd/local_wl_to.map 'attr(0640,_rspamd,_rspamd)' \
+#  --file /var/lib/rspamd/local_forbidden_file_extension.map 'attr(0640,_rspamd,_rspamd)' \
 > %{name}-%{version}-filelist
 echo "%doc COPYING" >> %{name}-%{version}-filelist
 

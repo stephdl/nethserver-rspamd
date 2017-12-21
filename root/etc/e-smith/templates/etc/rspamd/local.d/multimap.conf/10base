@@ -3,7 +3,10 @@
 # whitelist the senders
 FROM_WHITELIST \{
     type = "from";
-    map = "/var/lib/rspamd/local_wl_from.map";
+    map = [
+        "\$\{CONFDIR\}/local_wl_from.map",
+        "\$\{DBDIR\}/local_wl_from.map.local"
+    ];
     prefilter = true;
     filter = "email:addr";
     action = "accept";
@@ -13,7 +16,11 @@ FROM_WHITELIST \{
 
 #whitelist the domains of senders
 FROM_DOMAINS_WHITELIST \{
-    map = "/var/lib/rspamd/local_wl_from_domains.map";
+
+    map = [
+    ¦   "\$\{CONFDIR\}/local_wl_from_domains.map",
+    ¦   "\$\{DBDIR\}/local_wl_from_domains.map.local"
+    ];
     type = "from";
     prefilter = true;
     action = "accept";
@@ -25,7 +32,10 @@ FROM_DOMAINS_WHITELIST \{
 #blacklist the senders
 FROM_BLACKLIST \{
     type = "from";
-    map = "/var/lib/rspamd/local_bl_from.map";
+    map = [
+    ¦   "\$\{CONFDIR\}/local_bl_from.map",
+    ¦   "\$\{DBDIR\}/local_bl_from.map.local"
+    ];
     action = "reject";
     prefilter = true;
     filter = "email:addr";
@@ -35,7 +45,10 @@ FROM_BLACKLIST \{
 
 #blacklist the domains of senders
 FROM_DOMAINS_BLACKLIST \{
-    map = "/var/lib/rspamd/local_bl_from_domains.map";
+    map = [
+    ¦   "\$\{CONFDIR\}/local_bl_from_domains.map",
+    ¦   "\$\{DBDIR\}/local_bl_from_domains.map.local"
+    ];
     type = "from";
     filter = "email:domain:tld";
     description = "Refused list of FROM domains";
@@ -45,7 +58,10 @@ FROM_DOMAINS_BLACKLIST \{
 
 #whitelist the domain of recipients
 TO_DOMAINS_WHITELIST \{
-    map = "/var/lib/rspamd/local_wl_to_domains.map";
+    map = [
+    ¦   "\$\{CONFDIR\}/local_wl_to_domains.map",
+    ¦   "\$\{DBDIR\}/local_wl_to_domains.map.local"
+    ];
     type = "rcpt";
     prefilter = true;
     action = "accept";
@@ -57,7 +73,10 @@ TO_DOMAINS_WHITELIST \{
 #whitelist the email address of recipients
 TO_WHITELIST \{
     type = "rcpt";
-    map = "/var/lib/rspamd/local_wl_to.map";
+    map = [
+    ¦   "\$\{CONFDIR\}/local_wl_to.map",
+    ¦   "\$\{DBDIR\}/local_wl_to.map.local"
+    ];
     prefilter = true;
     filter = "email:addr";
     action = "accept";
@@ -70,7 +89,10 @@ TO_WHITELIST \{
 FORBIDDEN_FILE_EXTENSION \{
     type = "filename";
     filter = "extension";
-    map = "/var/lib/rspamd/local_forbidden_file_extension.map";
+    map = [
+    ¦   "\$\{CONFDIR\}/local_forbidden_file_extension.map",
+    ¦   "\$\{DBDIR\}/local_forbidden_file_extension.map.local"
+    ];
     action = "reject";
     symbol = "FORBIDDEN_FILE_EXTENSION";
     description = "List of forbidden file extensions";
