@@ -83,7 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 /var/lib/rspamd/local_wl_to_domains.map
 /var/lib/rspamd/local_bl_from.map
 /usr/share/nethesis/NethServer
+/etc/httpd/conf.d/rspamd.conf
 
-
-%dir %{_nseventsdir}/%{name}-update
+#%dir %{_nseventsdir}/%{name}-update
 %doc COPYING
