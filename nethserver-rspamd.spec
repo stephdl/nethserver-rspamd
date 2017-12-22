@@ -1,6 +1,6 @@
 Summary: NethServer rspamd configuration
-Name: nethserver-rspamd
-Version: 0.1.1
+Name: nethserver-mail-filter
+Version: 0.2.1
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name} 
@@ -9,6 +9,7 @@ BuildArch: noarch
 Requires: rspamd
 Requires: nethserver-antivirus
 Requires: nethserver-mail-server
+Requires: nethserver-dnsmasq, nethserver-unbound
 Requires: nethserver-redis
 
 BuildRequires: perl
