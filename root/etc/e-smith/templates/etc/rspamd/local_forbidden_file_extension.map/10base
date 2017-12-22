@@ -14,10 +14,10 @@ my %extClasses = (
 if(defined $rspamd{BlockAttachmentClassList}) {
     foreach $class (split(',', ($rspamd{BlockAttachmentClassList}))) {
         if(defined $extClasses{$class}) {
-        push @banned_extension, @{$extClasses{$class}};
+            push @banned_extension, @{$extClasses{$class}};
+            }
         }
     }
-}
 
 # Custom list:
 if($rspamd{BlockAttachmentCustomStatus} eq 'enabled'
@@ -26,10 +26,10 @@ if($rspamd{BlockAttachmentCustomStatus} eq 'enabled'
         # trim whitespace:
         $extension =~ s/\s+//;
         push @banned_extension, $extension;
+        }
     }
 
-    foreach $lines (@banned_extension){
-        $OUT .= "$lines\n";
+foreach $lines (@banned_extension){
+    $OUT .= "$lines\n";
     }
-}
 }
