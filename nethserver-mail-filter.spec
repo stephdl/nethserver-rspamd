@@ -1,6 +1,6 @@
 Summary: NethServer rspamd configuration
 Name: nethserver-mail-filter
-Version: 0.2.1
+Version: 2.0.0
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name} 
