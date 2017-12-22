@@ -69,3 +69,13 @@ event_services($event, qw(
     httpd reload
     httpd-admin reload
 ));
+
+
+
+#
+# migration-import event (refs #1660)
+#
+event_actions('migration-import', qw(
+    nethserver-mail-filter-migrate       30
+    nethserver-mail-migrate-wbl          30
+));
