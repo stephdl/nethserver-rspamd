@@ -157,7 +157,7 @@ class Filter extends \Nethgui\Controller\AbstractController
 
     protected function onParametersSaved($changedParameters)
     {
-        $this->getPlatform()->signalEvent('nethserver-rspamd-save@post-process');
+        $this->getPlatform()->signalEvent('nethserver-mail-filter-save@post-process');
     }
 
     public function prepareView(\Nethgui\View\ViewInterface $view)
