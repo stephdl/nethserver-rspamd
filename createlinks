@@ -2,15 +2,7 @@
 
 use esmith::Build::CreateLinks qw(:all);
 
-my $event = 'nethserver-rspamd-update';
-event_actions ( $event, qw (
-    initialize-default-databases 00
-    nethserver-rspamd-daemon-reload 01
-    nethserver-rspamd-unlink-modules-configuration 01
-    nethserver-rspamd-disable-modules-configuration 10
-    ));
-
-event_templates($event, qw(
+my @templates = qw (
     /etc/clamd.d/rspamd.conf
     /etc/httpd/admin-conf.d/rspamd.conf
     /etc/postfix/main.cf
@@ -39,7 +31,18 @@ event_templates($event, qw(
     /etc/rspamd/local_wl_to_domains.map
     /etc/rspamd/local_wl_to.map
     /etc/rspamd/local_forbidden_file_extension.map
-));
+);
+
+
+my $event = 'nethserver-mail-filter-update';
+event_actions ( $event, qw (
+    initialize-default-databases 00
+    nethserver-rspamd-daemon-reload 01
+    nethserver-rspamd-unlink-modules-configuration 01
+    nethserver-rspamd-disable-modules-configuration 10
+    ));
+
+event_templates($event, @templates);
 
 event_services($event, qw(
     rspamd restart
@@ -48,7 +51,7 @@ event_services($event, qw(
     httpd reload
 ));
 
-my $event = 'nethserver-rspamd-save';
+$event = 'nethserver-mail-filter-save';
 
 event_actions($event, qw(
     nethserver-rspamd-unlink-modules-configuration 01
@@ -56,36 +59,7 @@ event_actions($event, qw(
     firewall-adjust 91
 ));
 
-event_templates($event, qw(
-    /etc/clamd.d/rspamd.conf
-    /etc/httpd/admin-conf.d/rspamd.conf
-    /etc/postfix/main.cf
-    /etc/rspamd/local.d/antivirus.conf
-    /etc/rspamd/local.d/greylist.conf
-    /etc/rspamd/local.d/history_redis.conf
-    /etc/rspamd/local.d/ip_score.conf
-    /etc/rspamd/local.d/metrics.conf
-    /etc/rspamd/local.d/mx_check.conf
-    /etc/rspamd/local.d/redis.conf
-    /etc/rspamd/local.d/statistic.conf
-    /etc/rspamd/local.d/surbl.conf
-    /etc/rspamd/local.d/url_redirector.conf
-    /etc/rspamd/local.d/worker-proxy.inc
-    /etc/rspamd/local.d/worker-controller.inc
-    /etc/rspamd/local.d/worker-normal.inc
-    /etc/rspamd/local.d/fann_redis.conf
-    /etc/rspamd/local.d/options.inc
-    /etc/rspamd/rspamd.conf.local
-    /etc/rspamd/local.d/multimap.conf
-    /var/lib/nethserver/sieve-scripts/before.sieve
-    /etc/rspamd/local_wl_from.map
-    /etc/rspamd/local_wl_from_domains.map
-    /etc/rspamd/local_bl_from.map
-    /etc/rspamd/local_bl_from_domains.map
-    /etc/rspamd/local_wl_to_domains.map
-    /etc/rspamd/local_wl_to.map
-    /etc/rspamd/local_forbidden_file_extension.map
-));
+event_templates($event, @templates); 
 
 event_services($event, qw(
     rspamd reload
