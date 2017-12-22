@@ -70,4 +70,8 @@ echo $view->panel()
     ->insert($spamCheckbox)
 ;
 
+$host = explode(':',$_SERVER['HTTP_HOST']);
+$url = "http://".$host[0]."/".$view['Name'];
+echo $view->panel()->insert($view->literal("Rspamd URL: <a href='$url' target='_blank'>$url</a>")->setAttribute('hsc', FALSE));
+
 echo $view->buttonList($view::BUTTON_SUBMIT | $view::BUTTON_HELP);
