@@ -69,7 +69,12 @@ echo $view->panel()
     ->insert($virusCheckbox)
     ->insert($spamCheckbox)
 ;
-$app = $this->getPlatform()->getDatabase('configuration')->getProp('rspamd','Name');
+
+//retrieve the name property
+$db = $view->getModule()->getPlatform()->getDatabase('configuration');
+$app = $db->getProp('rspamd','Name');
+
+//display the url property
 $host = explode(':',$_SERVER['HTTP_HOST']);
 $url = "http://".$host[0]."/".$app;
 echo $view->panel()->insert($view->literal("Rspamd URL: <a href='$url' target='_blank'>$url</a>")->setAttribute('hsc', FALSE));
