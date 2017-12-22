@@ -69,9 +69,9 @@ echo $view->panel()
     ->insert($virusCheckbox)
     ->insert($spamCheckbox)
 ;
-
+$app = $this->getPlatform()->getDatabase('configuration')->getProp('rspamd','Name');
 $host = explode(':',$_SERVER['HTTP_HOST']);
-$url = "http://".$host[0]."/".$view['Name'];
+$url = "http://".$host[0]."/".$app;
 echo $view->panel()->insert($view->literal("Rspamd URL: <a href='$url' target='_blank'>$url</a>")->setAttribute('hsc', FALSE));
 
 echo $view->buttonList($view::BUTTON_SUBMIT | $view::BUTTON_HELP);
