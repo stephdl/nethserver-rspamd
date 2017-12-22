@@ -70,13 +70,15 @@ echo $view->panel()
     ->insert($spamCheckbox)
 ;
 
-//retrieve the name property
+//retrieve the name property and password
 $db = $view->getModule()->getPlatform()->getDatabase('configuration');
 $app = $db->getProp('rspamd','Name');
+$password = $db->getProp('rspamd','password');
 
 //display the url property
 $host = explode(':',$_SERVER['HTTP_HOST']);
 $url = "http://".$host[0]."/".$app;
 echo $view->panel()->insert($view->literal("Rspamd URL: <a href='$url' target='_blank'>$url</a>")->setAttribute('hsc', FALSE));
+echo $view->panel()->insert($view->literal("<br>Rspamd Password: $password"));
 
 echo $view->buttonList($view::BUTTON_SUBMIT | $view::BUTTON_HELP);
